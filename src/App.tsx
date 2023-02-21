@@ -18,7 +18,7 @@ function App() {
     const deleteItemShop = (id:string) => {
         let things = thingsToBuy.filter(th => th.id !== id)
         setThingsToBuy(things)
-
+        console.log(parseFloat('12.5$'))
     }
     let thingsToShopList = filter === "buy"
         ? thingsToBuy.filter(el=>el.inCart === true)
@@ -37,7 +37,7 @@ function App() {
     const changeCartStatus = (itemID: string, checked: boolean) => {
         setThingsToBuy(thingsToBuy.map( el => el.id === itemID ? {...el, inCart: checked} : el ))
     }
-    
+
     return (
         <div className="App">
             <ShopList
