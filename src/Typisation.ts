@@ -13,6 +13,7 @@ export type ShopListPropsType = {
     changeFilter: (newFilterValue:FilterType)=>void
     addtask:(newTitle:string)=> void
     changeCheckBox: (itemID: string, checked: boolean) => void
+    filterValue: FilterType
 
 }
 

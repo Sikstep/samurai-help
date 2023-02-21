@@ -1,12 +1,12 @@
 .error {
-    color: red;
+    border-color: red;
 }
 .input {
 
 }
 
 .errorMessage {
-    border-color: red;
+    color: red;
 }
 
 .shopList {
@@ -19,4 +19,8 @@
 
 .badPrice {
     color: red;
+}
+
+.buttonActiveColor {
+    background-color: mediumspringgreen;
 }

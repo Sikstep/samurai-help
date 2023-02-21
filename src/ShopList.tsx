@@ -5,9 +5,15 @@ import s from './App.module.css'
 export const ShopList = (props: ShopListPropsType) => {
 
     const [error, setError] = useState<'Ошибка, введите имя товара!' | ''>('');
+
+
+
     const onclickHandler = (value: FilterType) => {
         props.changeFilter(value)
+
     }
+
+
     const [inputValue, setInputValue] = useState('')
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.currentTarget.value)
@@ -37,13 +43,18 @@ export const ShopList = (props: ShopListPropsType) => {
             }
 
     }
-    const [shopList, setShopList] = useState('');
+    const buttonColorAll = props.filterValue === 'all' ? s.buttonActiveColor : '';
+
+    const buttonColorBuy = props.filterValue === 'buy' ? s.buttonActiveColor : '';
+
+    const buttonColorNotBuy = props.filterValue === 'not buy' ? s.buttonActiveColor : '';
+
     return (
         <div>
             <h3>{props.title}</h3>
             <input value={inputValue} onChange={onChangeHandler} onKeyDown={onKeyDownHandler}/>
             <button disabled={inputValue.trim() === ''} onClick={onClickHandler}>add</button>
-            {error && <div>{error}</div>}
+            {error && <div className={s.errorMessage}>{error}</div>}
             <ol>
 
                 {props.whatToBuy.map((item) => {
@@ -77,9 +88,9 @@ export const ShopList = (props: ShopListPropsType) => {
                 }
             </ol>
             <div>
-                <button onClick={() => onclickHandler('all')}>all</button>
-                <button onClick={() => onclickHandler('buy')}>buy</button>
-                <button onClick={() => onclickHandler('not buy')}>not buy</button>
+                <button className={buttonColorAll} onClick={() => onclickHandler('all')}>all</button>
+                <button className={buttonColorBuy} onClick={() => onclickHandler('buy')}>buy</button>
+                <button className={buttonColorNotBuy} onClick={() => onclickHandler('not buy')}>not buy</button>
             </div>
         </div>
     );

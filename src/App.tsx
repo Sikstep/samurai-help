@@ -47,6 +47,7 @@ function App() {
                 changeFilter={changeFilter}
                 addtask={addtask}
                 changeCheckBox={changeCartStatus}
+                filterValue={filter}
             />
         </div>
     );
