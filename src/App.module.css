@@ -1,0 +1,22 @@
+.error {
+    color: red;
+}
+.input {
+
+}
+
+.errorMessage {
+    border-color: red;
+}
+
+.shopList {
+    opacity: 0.5;
+}
+
+.goodPrice {
+    color: darkgreen;
+}
+
+.badPrice {
+    color: red;
+}

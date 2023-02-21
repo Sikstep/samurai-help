@@ -1,19 +1,25 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import {FilterType, ShopListPropsType} from "./Typisation";
+import s from './App.module.css'
 
 export const ShopList = (props: ShopListPropsType) => {
 
+    const [error, setError] = useState<"Ошибка, введите имя товара!" | ''>('');
     const onclickHandler =(value:FilterType)=>{
         props.changeFilter(value)
     }
     const[inputValue,setInputValue]=useState("")
     const onChangeHandler =(event:ChangeEvent<HTMLInputElement>)=>{
         setInputValue(event.currentTarget.value)
+        setError('')
     }
     const onClickHandler = ()=>{
         const trimmedValue = inputValue.trim()
         if (trimmedValue !== ""){
             props.addtask(inputValue)
+            setInputValue('')
+        } else {
+            setError("Ошибка, введите имя товара!");
             setInputValue('')
         }
 
@@ -26,17 +32,18 @@ export const ShopList = (props: ShopListPropsType) => {
                 props.addtask(inputValue)
                 setInputValue('')
             } else {
+                setError("Ошибка, введите имя товара!")
                 setInputValue('')
             }
 
     }
-
-
+    const [shopList, setShopList] = useState('');
     return (
         <div>
             <h3>{props.title}</h3>
             <input value={inputValue} onChange={onChangeHandler} onKeyDown={onKeyDownHandler}/>
             <button disabled={inputValue.trim() === ""} onClick={onClickHandler}>add</button>
+            {error && <div>{error}</div>}
             <ol>
                 {props.whatToBuy.map((item) => {
 
@@ -45,7 +52,7 @@ export const ShopList = (props: ShopListPropsType) => {
                         }
 
                         return (
-                            <li key={item.id}>
+                            <li key={item.id} className={item.inCart ? s.shopList : ''}>
                                 <div><b>{item.title}</b>
                                     <button onClick={()=>{props.deleteItemShop(item.id)}}> -x- </button></div>
                                 <div>{'expected price: ' + item.expectedPrice}</div>
