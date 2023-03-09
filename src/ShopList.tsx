@@ -6,13 +6,9 @@ export const ShopList = (props: ShopListPropsType) => {
 
     const [error, setError] = useState<'Ошибка, введите имя товара!' | ''>('');
 
-
-
     const onclickHandler = (value: FilterType) => {
-        props.changeFilter(value)
-
+        props.changeFilter(props.shopId, value)
     }
-
 
     const [inputValue, setInputValue] = useState('')
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -22,31 +18,27 @@ export const ShopList = (props: ShopListPropsType) => {
     const onClickHandler = () => {
         const trimmedValue = inputValue.trim()
         if (trimmedValue !== '') {
-            props.addtask(inputValue)
+            props.addtask(props.shopId, inputValue)
             setInputValue('')
         } else {
             setError('Ошибка, введите имя товара!');
             setInputValue('')
         }
-
     }
 
     const onKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
         const trimmedValue = inputValue.trim()
         if (event.key === 'Enter')
             if (trimmedValue !== '') {
-                props.addtask(inputValue)
+                props.addtask(props.shopId, inputValue)
                 setInputValue('')
             } else {
                 setError('Ошибка, введите имя товара!')
                 setInputValue('')
             }
-
     }
     const buttonColorAll = props.filterValue === 'all' ? s.buttonActiveColor : '';
-
     const buttonColorBuy = props.filterValue === 'buy' ? s.buttonActiveColor : '';
-
     const buttonColorNotBuy = props.filterValue === 'not buy' ? s.buttonActiveColor : '';
 
     return (
@@ -60,7 +52,7 @@ export const ShopList = (props: ShopListPropsType) => {
                 {props.whatToBuy.map((item) => {
 
                         const onChangeCheckBoxHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                            props.changeCheckBox(item.id, e.currentTarget.checked)
+                            props.changeCheckBox(props.shopId, item.id, e.currentTarget.checked)
                         }
 
                         const ex = Number(item.expectedPrice.replace(/[$]/g, ''));
@@ -71,7 +63,7 @@ export const ShopList = (props: ShopListPropsType) => {
                             <li key={item.id} className={item.inCart ? s.shopList : ''}>
                                 <div><b>{item.title}</b>
                                     <button onClick={() => {
-                                        props.deleteItemShop(item.id)
+                                        props.deleteItemShop(props.shopId, item.id)
                                     }}> -x-
                                     </button>
                                 </div>
@@ -95,5 +87,3 @@ export const ShopList = (props: ShopListPropsType) => {
         </div>
     );
 };
-
-// () =>{alert('удален из списка товар #' + item.id)}
