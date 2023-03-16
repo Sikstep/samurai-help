@@ -18,10 +18,10 @@ export type ShopListPropsType = {
     shopId: string
     title: string
     whatToBuy: ThingsToBuyPropsType[]
-    deleteItemShop: (shoplistID: string, itemID: string) => void
+    deleteItemShop: (shopListID: string, itemID: string) => void
     changeFilter: (shoplistID: string, newFilterValue:FilterType)=>void
-    addtask:(shoplistID: string, newTitle:string)=> void
-    changeCheckBox: (shoplistID: string, itemID: string, checked: boolean) => void
+    addTask:(shopListID: string, newTitle:string)=> void
+    changeCheckBox: (shopListID: string, itemID: string, checked: boolean) => void
     filterValue: FilterType
 
 }

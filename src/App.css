@@ -1,10 +1,31 @@
 .App {
-  padding: 30px;
-  display: flex;
+    padding: 30px;
+    display: flex;
 }
+
+.App button {
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
 .active-filter {
-  background-color: deepskyblue;
+    background-color: deepskyblue;
 }
+
 .in-cart {
-  opacity: 0.5;
+    opacity: 0.5;
+}
+
+.shoplist {
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
 }

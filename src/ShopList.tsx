@@ -6,7 +6,7 @@ export const ShopList = (props: ShopListPropsType) => {
 
     const [error, setError] = useState<'Ошибка, введите имя товара!' | ''>('');
 
-    const onclickHandler = (value: FilterType) => {
+    const onClickFilterButtonHandler = (value: FilterType) => {
         props.changeFilter(props.shopId, value)
     }
 
@@ -18,7 +18,7 @@ export const ShopList = (props: ShopListPropsType) => {
     const onClickHandler = () => {
         const trimmedValue = inputValue.trim()
         if (trimmedValue !== '') {
-            props.addtask(props.shopId, inputValue)
+            props.addTask(props.shopId, inputValue)
             setInputValue('')
         } else {
             setError('Ошибка, введите имя товара!');
@@ -30,25 +30,25 @@ export const ShopList = (props: ShopListPropsType) => {
         const trimmedValue = inputValue.trim()
         if (event.key === 'Enter')
             if (trimmedValue !== '') {
-                props.addtask(props.shopId, inputValue)
+                props.addTask(props.shopId, inputValue)
                 setInputValue('')
             } else {
                 setError('Ошибка, введите имя товара!')
                 setInputValue('')
             }
     }
+
     const buttonColorAll = props.filterValue === 'all' ? s.buttonActiveColor : '';
     const buttonColorBuy = props.filterValue === 'buy' ? s.buttonActiveColor : '';
     const buttonColorNotBuy = props.filterValue === 'not buy' ? s.buttonActiveColor : '';
 
     return (
-        <div>
+        <div className="shoplist">
             <h3>{props.title}</h3>
             <input value={inputValue} onChange={onChangeHandler} onKeyDown={onKeyDownHandler}/>
             <button disabled={inputValue.trim() === ''} onClick={onClickHandler}>add</button>
             {error && <div className={s.errorMessage}>{error}</div>}
             <ol>
-
                 {props.whatToBuy.map((item) => {
 
                         const onChangeCheckBoxHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -70,19 +70,30 @@ export const ShopList = (props: ShopListPropsType) => {
                                 <div className={colorPrice}>{'expected price: ' + item.expectedPrice}</div>
                                 <div className={colorPrice}>{'real price: ' + item.realPrice}</div>
                                 <span>in basket: </span>
-                                <input type={'checkbox'}
-                                       onChange={onChangeCheckBoxHandler}
-                                       checked={item.inCart}/>
+                                <input
+                                    type={'checkbox'}
+                                    onChange={onChangeCheckBoxHandler}
+                                    checked={item.inCart}
+                                />
                             </li>
                         )
                     }
                 )
                 }
             </ol>
-            <div>
-                <button className={buttonColorAll} onClick={() => onclickHandler('all')}>all</button>
-                <button className={buttonColorBuy} onClick={() => onclickHandler('buy')}>buy</button>
-                <button className={buttonColorNotBuy} onClick={() => onclickHandler('not buy')}>not buy</button>
+            <div className="filter-buttons">
+                <button
+                    className={buttonColorAll}
+                    onClick={() => onClickFilterButtonHandler('all')}>all
+                </button>
+                <button
+                    className={buttonColorBuy}
+                    onClick={() => onClickFilterButtonHandler('buy')}>buy
+                </button>
+                <button
+                    className={buttonColorNotBuy}
+                    onClick={() => onClickFilterButtonHandler('not buy')}>not buy
+                </button>
             </div>
         </div>
     );
