@@ -24,3 +24,12 @@
 .buttonActiveColor {
     background-color: deepskyblue;
 }
+
+.shoplistTitle {
+    display: flex;
+    align-items: center;
+}
+
+.shoplistTitle button {
+    height: 20px;
+}

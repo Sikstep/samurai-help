@@ -23,9 +23,10 @@ export type ShopListPropsType = {
     addTask:(shopListID: string, newTitle:string)=> void
     changeCheckBox: (shopListID: string, itemID: string, checked: boolean) => void
     filterValue: FilterType
+    removeShopList: (shopID: string) => void
 
 }
-export type lidstpropsType = {
+export type ListPropsType = {
     id: string
     title: string
     filter: FilterType
@@ -35,6 +36,10 @@ export type FilterType = "all" | "buy" | "not buy"
 
 export type UniversalFieldInputPropsType = {
     addItem: (inputValue: string) => void
+}
+
+export type EditableSpanType = {
+title: string
 }
 
 

@@ -2,6 +2,8 @@ import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import {FilterType, ShopListPropsType} from './Typisation';
 import s from './App.module.css'
 import {UniversalFieldInput} from './components/UniversalFieldInput';
+import {EditableSpan} from './components/EditableSpan';
+
 
 export const ShopList = (props: ShopListPropsType) => {
 
@@ -17,9 +19,16 @@ export const ShopList = (props: ShopListPropsType) => {
         props.addTask(props.shopId, inputValue)
     }
 
+    const onClickRemoveShoplistHandler = () => {
+        props.removeShopList(props.shopId)
+    }
+
     return (
         <div className="shoplist">
-            <h3>{props.title}</h3>
+            <div className={s.shoplistTitle}>
+                <h3>{props.title}</h3>
+                <button onClick={onClickRemoveShoplistHandler}>Delete</button>
+            </div>
             <UniversalFieldInput addItem={addNewTask} />
             <ol>
                 {props.whatToBuy.map((item) => {
@@ -34,7 +43,8 @@ export const ShopList = (props: ShopListPropsType) => {
 
                         return (
                             <li key={item.id} className={item.inCart ? s.shopList : ''}>
-                                <div><b>{item.title}</b>
+                                <div>
+                                    <EditableSpan title={item.title}/>
                                     <button onClick={() => {
                                         props.deleteItemShop(props.shopId, item.id)
                                     }}> -x-

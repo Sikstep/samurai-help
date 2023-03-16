@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import './App.css';
 import {ShopList} from "./ShopList";
-import {FilterType, lidstpropsType, shoplistType} from "./Typisation";
+import {FilterType, ListPropsType, shoplistType} from "./Typisation";
 import {v1} from "uuid";
+import {UniversalFieldInput} from './components/UniversalFieldInput';
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     let shoplistID_1 = v1();
     let shoplistID_2 = v1()
 
-    const [shopList, setShopList] = useState<Array<lidstpropsType>>([
+    const [shopList, setShopList] = useState<ListPropsType[]>([
         {id: shoplistID_1, title: "Что купить папе", filter: "all"},
         {id: shoplistID_2, title: "Что купить котопсу", filter: "all"},
     ])
@@ -53,13 +54,19 @@ function App() {
 
     const addNewTodolist = (newTodolistTitle: string) => {
         const newTodolistID = v1();
-        const newTodolist: lidstpropsType = {id: newTodolistID, title: newTodolistTitle, filter: "all"};
+        const newTodolist: ListPropsType = {id: newTodolistID, title: newTodolistTitle, filter: "all"};
         setShopList([newTodolist, ...shopList])
+        setThingsToBuy({...thingsToBuy, [newTodolistID]: []})
+    }
+
+    const removeShopList = (shopID: string) => {
+        setShopList(shopList.filter(shopList => shopList.id !== shopID));
+        delete thingsToBuy[shopID]
     }
     
     return (
         <div className="App">
-            <input /><button>Add</button>
+            <UniversalFieldInput addItem={addNewTodolist}/>
             {shopList.map(el => {
                 let thingsToShopList =
                     el.filter === "buy"
@@ -78,6 +85,7 @@ function App() {
                         addTask={addTask}
                         changeCheckBox={changeCartStatus}
                         filterValue={el.filter}
+                        removeShopList={removeShopList}
                     />
                 )
             })}
