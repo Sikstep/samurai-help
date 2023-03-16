@@ -1,53 +1,26 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import {FilterType, ShopListPropsType} from './Typisation';
 import s from './App.module.css'
+import {UniversalFieldInput} from './components/UniversalFieldInput';
 
 export const ShopList = (props: ShopListPropsType) => {
 
-    const [error, setError] = useState<'Ошибка, введите имя товара!' | ''>('');
-
     const onClickFilterButtonHandler = (value: FilterType) => {
         props.changeFilter(props.shopId, value)
-    }
-
-    const [inputValue, setInputValue] = useState('')
-    const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setInputValue(event.currentTarget.value)
-        setError('')
-    }
-    const onClickHandler = () => {
-        const trimmedValue = inputValue.trim()
-        if (trimmedValue !== '') {
-            props.addTask(props.shopId, inputValue)
-            setInputValue('')
-        } else {
-            setError('Ошибка, введите имя товара!');
-            setInputValue('')
-        }
-    }
-
-    const onKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-        const trimmedValue = inputValue.trim()
-        if (event.key === 'Enter')
-            if (trimmedValue !== '') {
-                props.addTask(props.shopId, inputValue)
-                setInputValue('')
-            } else {
-                setError('Ошибка, введите имя товара!')
-                setInputValue('')
-            }
     }
 
     const buttonColorAll = props.filterValue === 'all' ? s.buttonActiveColor : '';
     const buttonColorBuy = props.filterValue === 'buy' ? s.buttonActiveColor : '';
     const buttonColorNotBuy = props.filterValue === 'not buy' ? s.buttonActiveColor : '';
 
+    const addNewTask = (inputValue: string) => {
+        props.addTask(props.shopId, inputValue)
+    }
+
     return (
         <div className="shoplist">
             <h3>{props.title}</h3>
-            <input value={inputValue} onChange={onChangeHandler} onKeyDown={onKeyDownHandler}/>
-            <button disabled={inputValue.trim() === ''} onClick={onClickHandler}>add</button>
-            {error && <div className={s.errorMessage}>{error}</div>}
+            <UniversalFieldInput addItem={addNewTask} />
             <ol>
                 {props.whatToBuy.map((item) => {
 

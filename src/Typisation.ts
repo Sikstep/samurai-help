@@ -33,5 +33,8 @@ export type lidstpropsType = {
 
 export type FilterType = "all" | "buy" | "not buy"
 
+export type UniversalFieldInputPropsType = {
+    addItem: (inputValue: string) => void
+}
 
 
