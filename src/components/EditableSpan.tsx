@@ -13,6 +13,5 @@ export const EditableSpan = (props: EditableSpanType) => {
         editable ?
         <UniversalFieldInput addItem={()=>{}}/> :
             <span onDoubleClick={()=>{}}><b>{props.title}</b></span>
-
     );
 };

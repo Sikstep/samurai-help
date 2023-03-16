@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
+import React, {ChangeEvent} from 'react';
 import {FilterType, ShopListPropsType} from './Typisation';
 import s from './App.module.css'
 import {UniversalFieldInput} from './components/UniversalFieldInput';
@@ -29,7 +29,7 @@ export const ShopList = (props: ShopListPropsType) => {
                 <h3>{props.title}</h3>
                 <button onClick={onClickRemoveShoplistHandler}>Delete</button>
             </div>
-            <UniversalFieldInput addItem={addNewTask} />
+            <UniversalFieldInput addItem={addNewTask}/>
             <ol>
                 {props.whatToBuy.map((item) => {
 
