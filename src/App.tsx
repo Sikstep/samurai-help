@@ -63,6 +63,10 @@ function App() {
         setShopList(shopList.filter(shopList => shopList.id !== shopID));
         delete thingsToBuy[shopID]
     }
+
+    const changePurchaseTitle = (shoplistID: string, purchaseID: string, newTitle: string) => {
+        setThingsToBuy({...thingsToBuy, [shoplistID]: thingsToBuy[shoplistID].map(purchase => purchase.id === purchaseID ? {...purchase, title: newTitle} : purchase)})
+    }
     
     return (
         <div className="App">

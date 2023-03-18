@@ -36,6 +36,9 @@ export type FilterType = "all" | "buy" | "not buy"
 
 export type UniversalFieldInputPropsType = {
     addItem: (inputValue: string) => void
+    onBlur?: () => void
+    onEnter?: () => void
+
 }
 
 export type EditableSpanType = {

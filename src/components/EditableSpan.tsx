@@ -6,12 +6,13 @@ export const EditableSpan = (props: EditableSpanType) => {
     const [editable, setEditable] = useState(false);
 
     const onDoubleClickHandler = () => {
-        
+        setEditable(true)
     }
-    
+
+
     return (
         editable ?
         <UniversalFieldInput addItem={()=>{}}/> :
-            <span onDoubleClick={()=>{}}><b>{props.title}</b></span>
+            <span onDoubleClick={onDoubleClickHandler}><b>{props.title}</b></span>
     );
 };
