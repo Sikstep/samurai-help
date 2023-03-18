@@ -49,6 +49,7 @@ export const UniversalFieldInput = (props: UniversalFieldInputPropsType) => {
                    onChange={onChangeHandler}
                    onKeyDown={onKeyDownHandler}
                    onBlur={onBlurHandler}
+                   autoFocus
             />
             <button disabled={inputValue.trim() === ''} onClick={onClickHandler}>add</button>
             {error && <div className={s.errorMessage}>{error}</div>}

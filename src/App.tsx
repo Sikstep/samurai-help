@@ -90,6 +90,7 @@ function App() {
                         changeCheckBox={changeCartStatus}
                         filterValue={el.filter}
                         removeShopList={removeShopList}
+                        changePurchaseTitle={changePurchaseTitle}
                     />
                 )
             })}

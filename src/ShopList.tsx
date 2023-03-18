@@ -23,6 +23,7 @@ export const ShopList = (props: ShopListPropsType) => {
         props.removeShopList(props.shopId)
     }
 
+
     return (
         <div className="shoplist">
             <div className={s.shoplistTitle}>
@@ -41,10 +42,13 @@ export const ShopList = (props: ShopListPropsType) => {
                         const real = Number(item.realPrice.replace(/[$]/g, ''));
                         const colorPrice = ex >= real ? s.goodPrice : s.badPrice;
 
+                        const changePurchaseTitleHandler = (newTitle: string) => {
+                                props.changePurchaseTitle(props.shopId, item.id, newTitle)
+                        }
                         return (
                             <li key={item.id} className={item.inCart ? s.shopList : ''}>
                                 <div>
-                                    <EditableSpan title={item.title}/>
+                                    <EditableSpan title={item.title} changePurchaseTitle={changePurchaseTitleHandler}/>
                                     <button onClick={() => {
                                         props.deleteItemShop(props.shopId, item.id)
                                     }}> -x-

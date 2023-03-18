@@ -1,8 +1,8 @@
-import {v1} from "uuid";
+import {v1} from 'uuid';
 
 
 export type shoplistType = {
-    [key:string]: ThingsToBuyPropsType[]
+    [key: string]: ThingsToBuyPropsType[]
 }
 
 
@@ -19,11 +19,12 @@ export type ShopListPropsType = {
     title: string
     whatToBuy: ThingsToBuyPropsType[]
     deleteItemShop: (shopListID: string, itemID: string) => void
-    changeFilter: (shoplistID: string, newFilterValue:FilterType)=>void
-    addTask:(shopListID: string, newTitle:string)=> void
+    changeFilter: (shoplistID: string, newFilterValue: FilterType) => void
+    addTask: (shopListID: string, newTitle: string) => void
     changeCheckBox: (shopListID: string, itemID: string, checked: boolean) => void
     filterValue: FilterType
     removeShopList: (shopID: string) => void
+    changePurchaseTitle: (shoplistID: string, purchaseID: string, newTitle: string) => void
 
 }
 export type ListPropsType = {
@@ -32,7 +33,7 @@ export type ListPropsType = {
     filter: FilterType
 }
 
-export type FilterType = "all" | "buy" | "not buy"
+export type FilterType = 'all' | 'buy' | 'not buy'
 
 export type UniversalFieldInputPropsType = {
     addItem: (inputValue: string) => void
@@ -42,7 +43,8 @@ export type UniversalFieldInputPropsType = {
 }
 
 export type EditableSpanType = {
-title: string
+    title: string
+    changePurchaseTitle: (newTitle: string) => void
 }
 
 

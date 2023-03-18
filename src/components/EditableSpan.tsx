@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {EditableSpanType} from '../Typisation';
 import {UniversalFieldInput} from './UniversalFieldInput';
 
@@ -9,10 +9,24 @@ export const EditableSpan = (props: EditableSpanType) => {
         setEditable(true)
     }
 
+    const onBlurHandler = () => {
+        setEditable(false);
+    }
+
+    const onEnterHandler = () => {
+        setEditable(false)
+    }
+
+    const changeNewPurchaseTitle = (newTitle: string) => {
+        props.changePurchaseTitle(newTitle)
+    }
 
     return (
         editable ?
-        <UniversalFieldInput addItem={()=>{}}/> :
+            <UniversalFieldInput addItem={changeNewPurchaseTitle}
+                                 onBlur={onBlurHandler}
+                                 onEnter={onEnterHandler}
+            /> :
             <span onDoubleClick={onDoubleClickHandler}><b>{props.title}</b></span>
     );
 };
