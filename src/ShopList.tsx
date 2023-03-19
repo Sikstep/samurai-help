@@ -23,11 +23,16 @@ export const ShopList = (props: ShopListPropsType) => {
         props.removeShopList(props.shopId)
     }
 
+    const changeShoplistTitleHandler = (newTitle: string) => {
+        props.changeShoplistTitle(props.shopId, newTitle)
+    }
 
     return (
         <div className="shoplist">
             <div className={s.shoplistTitle}>
-                <h3>{props.title}</h3>
+                <h3>
+                    <EditableSpan title={props.title} changePurchaseTitle={changeShoplistTitleHandler}/>
+                </h3>
                 <button onClick={onClickRemoveShoplistHandler}>Delete</button>
             </div>
             <UniversalFieldInput addItem={addNewTask}/>

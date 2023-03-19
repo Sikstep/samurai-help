@@ -25,6 +25,7 @@ export type ShopListPropsType = {
     filterValue: FilterType
     removeShopList: (shopID: string) => void
     changePurchaseTitle: (shoplistID: string, purchaseID: string, newTitle: string) => void
+    changeShoplistTitle: (shoplistID: string, newTitle: string) => void
 
 }
 export type ListPropsType = {
@@ -37,9 +38,6 @@ export type FilterType = 'all' | 'buy' | 'not buy'
 
 export type UniversalFieldInputPropsType = {
     addItem: (inputValue: string) => void
-    onBlur?: () => void
-    onEnter?: () => void
-
 }
 
 export type EditableSpanType = {

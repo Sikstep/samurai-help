@@ -67,7 +67,11 @@ function App() {
     const changePurchaseTitle = (shoplistID: string, purchaseID: string, newTitle: string) => {
         setThingsToBuy({...thingsToBuy, [shoplistID]: thingsToBuy[shoplistID].map(purchase => purchase.id === purchaseID ? {...purchase, title: newTitle} : purchase)})
     }
-    
+
+    const changeShoplistTitle = (shoplistID: string, newTitle: string) => {
+        setShopList(shopList.map(shoplist => shoplist.id === shoplistID ? {...shoplist, title: newTitle} : shoplist))
+    }
+
     return (
         <div className="App">
             <UniversalFieldInput addItem={addNewTodolist}/>
@@ -91,6 +95,7 @@ function App() {
                         filterValue={el.filter}
                         removeShopList={removeShopList}
                         changePurchaseTitle={changePurchaseTitle}
+                        changeShoplistTitle={changeShoplistTitle}
                     />
                 )
             })}

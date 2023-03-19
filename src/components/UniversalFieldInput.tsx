@@ -28,27 +28,19 @@ export const UniversalFieldInput = (props: UniversalFieldInputPropsType) => {
             if (trimmedValue !== '') {
                 props.addItem(inputValue)
                 setInputValue('')
-                if (props.onEnter) {
-                    props.onEnter()
-                }
+
             } else {
                 setError('Ошибка, введите имя товара!')
                 setInputValue('')
             }
     }
 
-    const onBlurHandler = () => {
-        if (props.onBlur) {
-            props.onBlur()
-        }
-    }
 
     return (
         <div>
             <input value={inputValue}
                    onChange={onChangeHandler}
                    onKeyDown={onKeyDownHandler}
-                   onBlur={onBlurHandler}
                    autoFocus
             />
             <button disabled={inputValue.trim() === ''} onClick={onClickHandler}>add</button>
