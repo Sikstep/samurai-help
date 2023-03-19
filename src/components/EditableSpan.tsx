@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {EditableSpanType} from '../Typisation';
-import {UniversalFieldInput} from './UniversalFieldInput';
 
 export const EditableSpan = (props: EditableSpanType) => {
     const [editable, setEditable] = useState(false);
+    const [currentValue, setCurrentValue] = useState(props.title);
 
     const onDoubleClickHandler = () => {
         setEditable(true)
@@ -13,19 +13,26 @@ export const EditableSpan = (props: EditableSpanType) => {
         setEditable(false);
     }
 
-    const onEnterHandler = () => {
-        setEditable(false)
+    const onEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            props.changePurchaseTitle(currentValue)
+            setEditable(false)
+        }
     }
 
-    const changeNewPurchaseTitle = (newTitle: string) => {
-        props.changePurchaseTitle(newTitle)
+    const addNewTitle = (e: ChangeEvent<HTMLInputElement>) => {
+        let newTitle = e.currentTarget.value.trim()
+        if (newTitle) {
+            setCurrentValue(newTitle)
+        }
     }
 
     return (
         editable ?
-            <UniversalFieldInput addItem={changeNewPurchaseTitle}
-                                 onBlur={onBlurHandler}
-                                 onEnter={onEnterHandler}
+            <input value={currentValue} autoFocus
+                   onBlur={onBlurHandler}
+                   onKeyDown={onEnterHandler}
+                   onChange={addNewTitle}
             /> :
             <span onDoubleClick={onDoubleClickHandler}><b>{props.title}</b></span>
     );

@@ -38,18 +38,9 @@ export const UniversalFieldInput = (props: UniversalFieldInputPropsType) => {
     }
 
     const onBlurHandler = () => {
-        const trimmedValue = inputValue.trim()
-        if (trimmedValue !== '') {
-            props.addItem(inputValue)
-            setInputValue('')
-            if (props.onBlur) {
-                props.onBlur()
-            }
-        } else {
-            setError('Ошибка, введите имя товара!')
-            setInputValue('')
+        if (props.onBlur) {
+            props.onBlur()
         }
-
     }
 
     return (
