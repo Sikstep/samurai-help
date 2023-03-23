@@ -10,6 +10,7 @@ export const EditableSpan = (props: EditableSpanType) => {
     }
 
     const onBlurHandler = () => {
+        props.changePurchaseTitle(currentValue)
         setEditable(false);
     }
 
