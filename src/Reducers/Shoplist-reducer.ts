@@ -1,7 +1,6 @@
-import React from 'react';
 import {FilterType, ListPropsType} from '../Typisation';
 import {v1} from 'uuid';
-import {stat} from 'fs';
+
 type StateType = ListPropsType[]
 type AddShoplistType = ReturnType<typeof addShoplistAC>
 type ChangeFilterShoplistType = ReturnType<typeof changeFilterShoplistAC>
@@ -26,8 +25,6 @@ const shoplistReducer = (state: StateType = initState, action: ActionsType): Sta
 
         case "REMOVE-SHOPLIST":
             stateCopy = state.filter(shopList => shopList.id !== action.payload);
-
-            delete state[action.payload]
             return stateCopy
 
         case "CHANGE-FILTER-SHOPLIST":

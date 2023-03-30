@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
-import {ShopList} from "./ShopList";
-import {FilterType, ListPropsType, shoplistType} from "./Typisation";
-import {v1} from "uuid";
+import {ShopList} from './ShopList';
+import {FilterType, ListPropsType, shoplistType} from './Typisation';
+import {v1} from 'uuid';
 import {UniversalFieldInput} from './components/UniversalFieldInput';
 
 
