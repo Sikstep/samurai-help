@@ -15,7 +15,7 @@ const initState: StateType = [
     {id: shoplistID_2, title: "Что купить котопсу", filter: "all"},
 ]
 
-const shoplistReducer = (state: StateType = initState, action: ActionsType): StateType => {
+export const shoplistReducer = (state: StateType = initState, action: ActionsType): StateType => {
     let stateCopy;
     switch (action.type) {
         case "ADD-SHOPLIST":
@@ -35,21 +35,21 @@ const shoplistReducer = (state: StateType = initState, action: ActionsType): Sta
     }
 }
 
-const addShoplistAC = (title: string, shopID: string) => {
+export const addShoplistAC = (title: string, shopID: string) => {
     return {
         type: "ADD-SHOPLIST",
         payload: {title, shopID}
     } as const
 }
 
-const changeFilterShoplistAC = (shopListID: string, newFilterValue: FilterType) => {
+export const changeFilterShoplistAC = (shopListID: string, newFilterValue: FilterType) => {
     return {
         type: "CHANGE-FILTER-SHOPLIST",
         payload: {shopListID, newFilterValue}
     } as const
 }
 
-const removeShoplistAC = (shopID: string) => {
+export const removeShoplistAC = (shopID: string) => {
     return {
         type: "REMOVE-SHOPLIST",
         payload: shopID
